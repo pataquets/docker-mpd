@@ -17,3 +17,5 @@ RUN \
     /run/mpd \
   && \
   sed -i -e 's/bind_to_address\t\t"localhost"/bind_to_address\t\t"0.0.0.0"/' /etc/mpd.conf
+
+ENTRYPOINT [ "mpd", "--no-daemon" ]
