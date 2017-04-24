@@ -18,4 +18,10 @@ RUN \
   && \
   sed -i -e 's/bind_to_address\t\t"localhost"/bind_to_address\t\t"0.0.0.0"/' /etc/mpd.conf
 
+ADD ./audio_output.httpd.conf /etc/mpd.conf.d/
+RUN \
+  cat /etc/mpd.conf.d/audio_output.httpd.conf | \
+    tee -a /etc/mpd.conf && \
+  nl /etc/mpd.conf
+
 ENTRYPOINT [ "mpd", "--no-daemon" ]
